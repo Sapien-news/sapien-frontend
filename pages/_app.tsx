@@ -28,6 +28,7 @@ import {
 import { clusterApiUrl } from "@solana/web3.js";
 
 import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
+import Layout from "../components/layout";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const network = WalletAdapterNetwork.Devnet;
@@ -48,9 +49,11 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider theme={theme}>
       <ConnectionProvider endpoint={endpoint}>
-        <WalletProvider wallets={wallets} autoConnect>
+        <WalletProvider wallets={wallets}>
           <WalletModalProvider>
-            <Component {...pageProps} />
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
           </WalletModalProvider>{" "}
         </WalletProvider>
       </ConnectionProvider>
