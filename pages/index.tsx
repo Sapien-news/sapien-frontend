@@ -6,6 +6,8 @@ import ReadCard from "../components/home/ReadCard";
 import ReadButton from "../components/buttons/ReadButton";
 import KnowMoreButton from "../components/buttons/KnowMoreButton";
 import { Box } from "@chakra-ui/react";
+import SaveButton from "../components/buttons/SaveButton";
+import PostButton from "../components/buttons/PostButton";
 
 const content = `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s`;
 const author = "Author 1";
@@ -19,6 +21,12 @@ const Home: NextPage = () => {
       </Box>
       <Box p="5">
         <KnowMoreButton />
+      </Box>
+      <Box p="5">
+        <SaveButton />
+      </Box>
+      <Box p="5">
+        <PostButton />
       </Box>
     </Box>
   );
