@@ -6,6 +6,8 @@ import ReadCard from "../components/home/ReadCard";
 import ReadButton from "../components/buttons/ReadButton";
 import KnowMoreButton from "../components/buttons/KnowMoreButton";
 import { Box } from "@chakra-ui/react";
+import SaveButton from "../components/buttons/SaveButton";
+import PostButton from "../components/buttons/PostButton";
 
 import Layout from "../components/layout/";
 
@@ -21,6 +23,12 @@ const Home = () => {
       </Box>
       <Box p="5">
         <KnowMoreButton />
+      </Box>
+      <Box p="5">
+        <SaveButton />
+      </Box>
+      <Box p="5">
+        <PostButton />
       </Box>
     </Box>
   );

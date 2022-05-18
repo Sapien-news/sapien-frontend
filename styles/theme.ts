@@ -26,6 +26,24 @@ const components = {
     variants: {
       white: {
         bg: "white",
+        _hover: {
+          background: "rgba(255, 255, 255, 0.5)",
+        },
+      },
+      transparent: {
+        bg: "white",
+        color: "white",
+        background: "rgba(255, 255, 255, 0.3)",
+        _hover: {
+          background: "rgba(255, 255, 255, 0.4)",
+        },
+      },
+      red: {
+        bg: "red",
+        color: "white",
+        _hover: {
+          background: "rgba(255, 0, 0, 0.8)",
+        },
       },
     },
   },
