@@ -21,5 +21,14 @@ const colors = {
     // body: "Raleway",
   },
 };
+const components = {
+  Button: {
+    variants: {
+      white: {
+        bg: "white",
+      },
+    },
+  },
+};
 
-export const theme = extendTheme({ colors });
+export const theme = extendTheme({ components, colors });
