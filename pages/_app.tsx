@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from "react";
+import React, { FC, useMemo, ReactNode } from "react";
 import type { AppProps } from "next/app";
 import "../styles/globals.css";
 import "@fontsource/space-grotesk/300.css";
@@ -9,11 +9,7 @@ import {
   WalletProvider,
 } from "@solana/wallet-adapter-react";
 
-import {
-  WalletModalProvider,
-  WalletDisconnectButton,
-  WalletMultiButton,
-} from "@solana/wallet-adapter-react-ui";
+import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
 
 import {
   GlowWalletAdapter,
@@ -29,8 +25,13 @@ import { clusterApiUrl } from "@solana/web3.js";
 
 import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
 import Layout from "../components/layout";
+import { NextPage } from "next";
+import WithAuth from "../components/HOC/withAuth";
 
-function MyApp({ Component, pageProps }: AppProps) {
+import dynamic from "next/dynamic";
+
+function MyApp({ Component, pageProps }: any) {
+  const getLayout = Component.getLayout || ((page: NextPage) => page);
   const network = WalletAdapterNetwork.Devnet;
 
   const endpoint = useMemo(() => clusterApiUrl(network), [network]);
@@ -46,18 +47,30 @@ function MyApp({ Component, pageProps }: AppProps) {
     [network]
   );
 
+  const WalletConnectionProvider = dynamic<{ children: ReactNode }>(
+    () =>
+      import("../components/WalletConnectionProvider").then(
+        ({ WalletConnectionProvider }) => WalletConnectionProvider
+      ),
+    {
+      ssr: false,
+    }
+  );
+
   return (
-    <ChakraProvider theme={theme}>
-      <ConnectionProvider endpoint={endpoint}>
-        <WalletProvider wallets={wallets}>
-          <WalletModalProvider>
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-          </WalletModalProvider>{" "}
-        </WalletProvider>
-      </ConnectionProvider>
-    </ChakraProvider>
+    <WalletConnectionProvider>
+      {/* <WalletProvider wallets={wallets}> */}
+      <WalletModalProvider>
+        <ChakraProvider theme={theme}>
+          <WithAuth>
+            {/* <Layout> */}
+            {getLayout(<Component {...pageProps} />)}
+            {/* </Layout> */}
+          </WithAuth>
+        </ChakraProvider>
+      </WalletModalProvider>{" "}
+      {/* </WalletProvider> */}
+    </WalletConnectionProvider>
   );
 }
 

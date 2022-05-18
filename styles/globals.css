@@ -5,6 +5,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: "Space grotesk";
+  color: azure;
 }
 
 a {
@@ -14,4 +15,9 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.wallet-adapter-button,
+.wallet-adapter-button-trigger {
+  color: white;
 }

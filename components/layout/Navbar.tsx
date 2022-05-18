@@ -1,30 +1,35 @@
 import {
   Box,
   HStack,
-  Grid,
+  Flex,
   Input,
   InputGroup,
   InputRightElement,
+  Icon,
 } from "@chakra-ui/react";
-import { MdSettings } from "react-icons/md";
+import { MdSearch } from "react-icons/md";
 import NextLink from "next/link";
 import React from "react";
 import { Link } from "@chakra-ui/react";
+import {
+  WalletDisconnectButton,
+  WalletMultiButton,
+} from "@solana/wallet-adapter-react-ui";
 
 const Navbar = () => {
   return (
     <nav style={{ width: "100%" }}>
-      <Grid
-        templateColumns="1fr 1fr 2fr"
-        gap={6}
-        bg="brand.greyDark"
-        width={"100%"}
-        padding={6}
+      <Flex
+        justifyContent={"space-between"}
+        background="brand.greyDark"
+        padding={"4"}
       >
         <div></div>
-        <InputGroup>
-          <Input placeholder="Basic usage" />
-          <InputRightElement children={<Icon as={MdSettings} />} />
+        <InputGroup maxWidth={"20rem"} alignItems={"center"}>
+          <Input placeholder="Search " />
+          <InputRightElement
+            children={<Icon color={"brand.white"} as={MdSearch} />}
+          />
         </InputGroup>
         <HStack>
           <NextLink href="/" passHref>
@@ -37,8 +42,14 @@ const Navbar = () => {
             <Link color="brand.white"> Publish</Link>
           </NextLink>
           {/* <Link>Connect</Link> */}
+          {/* <Box marginRight={"0.5rem"}> */}
+          <Box marginRight={"0.5rem"} color={"white"}>
+            <WalletMultiButton />
+          </Box>
+          <WalletDisconnectButton />
+          {/* </Box> */}
         </HStack>
-      </Grid>
+      </Flex>
     </nav>
   );
 };

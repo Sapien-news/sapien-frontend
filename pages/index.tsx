@@ -7,10 +7,12 @@ import ReadButton from "../components/buttons/ReadButton";
 import KnowMoreButton from "../components/buttons/KnowMoreButton";
 import { Box } from "@chakra-ui/react";
 
+import Layout from "../components/layout/";
+
 const content = `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s`;
 const author = "Author 1";
 
-const Home: NextPage = () => {
+const Home = () => {
   return (
     <Box h="100vh" bg="brand.primaryBG" className={styles.container}>
       <ReadCard heading="Heading" author={author} content={content} />
@@ -22,6 +24,10 @@ const Home: NextPage = () => {
       </Box>
     </Box>
   );
+};
+
+Home.getLayout = function getLayout(page: NextPage) {
+  return <Layout>{page}</Layout>;
 };
 
 export default Home;
