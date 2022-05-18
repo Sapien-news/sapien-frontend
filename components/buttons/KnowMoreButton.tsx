@@ -6,9 +6,7 @@ export default function KnowMoreButton() {
   return (
     <Button
       leftIcon={<AiOutlineInfoCircle color="white" />}
-      bg="white"
-      color="white"
-      background="rgba(255, 255, 255, 0.3)"
+      variant="transparent"
     >
       Know more
     </Button>

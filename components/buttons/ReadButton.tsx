@@ -4,7 +4,7 @@ import { BsFillPlayFill } from "react-icons/bs";
 
 export default function ReadButton() {
   return (
-    <Button leftIcon={<BsFillPlayFill color="black" />} variant="solid">
+    <Button leftIcon={<BsFillPlayFill color="black" />} variant="white">
       Read now
     </Button>
   );
